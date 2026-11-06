@@ -43,27 +43,31 @@ PythonProject/
 
 **顺序永远是：先后端（8000），再前端（8501）。** 前端启动时会去问后端 `/health`，后端没起就会显示「未连接」。
 
-**方式 A：在 PyCharm 里点绿三角（推荐）**
+> **clone 到新电脑？先做这两件事再往下看：**
+> 1. `pip install -r requirements-agent.txt`（Python 3.12+）
+> 2. 复制 `.env.example` 为 `.env`，填入自己的 API Key（需要跑知识库的话，再执行 `python fetch_docs.py` 下载语料、`python -m backend.rag.ingest --reset` 建库）
+>
+> 然后 ↓ 方式 B 或方式 C 启动即可。
 
-右上角运行配置下拉里已经有两个配置（若没看到，`File → Reload from Disk` 或重启 PyCharm）：
+**方式 A：在 PyCharm 里点绿三角**
+
+右上角运行配置下拉里有两个配置：
 
 - `car_agent 后端 (8000)` → 先跑这个
 - `car_agent 前端 (8501)` → 再跑这个
-
-两个配置都已指定解释器 `PythonProject\.venv`、工作目录 `car_agent`、环境文件 `car_agent\.env`，不用手填任何东西。
 
 **方式 B：双击 bat**
 
 1. 双击 `run_backend.bat` → 浏览器打开 http://127.0.0.1:8000/docs 能看到接口列表
 2. 双击 `run_frontend.bat` → 浏览器打开 http://127.0.0.1:8501 开始聊天
 
-**方式 C：命令行**
+**方式 C：命令行（bat 里的 `PYTHON_EXE` 改成你自己的解释器路径）**
 
 ```bat
-cd /d E:\python-project\PythonProject\car_agent
-E:\python-project\PythonProject\.venv\Scripts\python.exe -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
+cd /d <项目目录>\car_agent
+python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
 :: 另开一个窗口
-E:\python-project\PythonProject\.venv\Scripts\python.exe -m streamlit run frontend/app.py
+python -m streamlit run frontend/app.py
 ```
 
 **怎么确认起来了**
