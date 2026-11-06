@@ -1,0 +1,37 @@
+# 密钥绝对不能提交
+.env
+
+# 向量库（二进制，跑 ingest 自己生成）
+data/chroma/
+data/vector_index/
+
+# 会话记录（个人对话内容）
+data/sessions/
+
+# 汽车手册 PDF：单份 15~69 MB，且版权归厂商，不进仓库
+# 用 python fetch_docs.py 重新下载
+data/docs/*.pdf
+data/docs/*.PDF
+
+# LangGraph checkpointer 的数据库（个人对话内容 + Agent 中间状态）
+data/agent_memory.db
+data/agent_memory.db-wal
+data/agent_memory.db-shm
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 编辑器 / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 个人学习材料（打印用），不进仓库
+代码学习手册.docx
+# 个人学习手册不进仓库
+手册-如何读懂这个项目.md

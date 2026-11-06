@@ -1,0 +1,18 @@
+# 阶段 2 起需要（langchain 必须 1.x，create_agent 在 1.0 才有）
+langchain>=1.4.0
+langchain-core>=1.0.0
+langchain-openai>=1.7.0
+langchain-text-splitters>=1.0.0
+
+# 阶段 3：联网搜索
+tavily-python
+
+# 阶段 4：知识库（Chroma；FAISS 走 langchain-community 里的弃用封装，故不作默认）
+langchain-chroma>=1.0.0
+chromadb>=1.0.0
+langchain-community
+pypdf
+
+# 阶段 5：会话持久化（MySQL）
+sqlalchemy
+pymysql
